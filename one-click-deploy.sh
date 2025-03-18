@@ -4,6 +4,8 @@
 clear
 echo "=============================================="
 echo "   安全代理服务一键部署脚本"
+echo "   作者: yulonh"
+echo "   项目: https://github.com/yulonh/v2ray-proxy"
 echo "=============================================="
 echo ""
 
@@ -187,6 +189,7 @@ if docker ps | grep -q "xray"; then
   echo "流控: xtls-rprx-vision"
   echo "=============================================="
   echo "建议截图保存以上信息"
+  echo "遇到问题请访问: https://github.com/yulonh/v2ray-proxy/issues"
 else
   echo "=============================================="
   echo "服务启动失败，请运行以下命令查看日志："

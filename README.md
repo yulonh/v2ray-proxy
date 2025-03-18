@@ -15,10 +15,8 @@
 在服务器上运行以下命令进行一键安装：
 
 ```bash
-wget -N --no-check-certificate https://raw.githubusercontent.com/YOUR_USERNAME/v2ray-proxy/main/install.sh && chmod +x install.sh && bash install.sh
+wget -N --no-check-certificate https://raw.githubusercontent.com/yulonh/v2ray-proxy/main/one-click-deploy.sh && chmod +x one-click-deploy.sh && bash one-click-deploy.sh
 ```
-
-> 注意：请将上述链接中的YOUR_USERNAME替换为您的GitHub用户名，如果您已经将此项目上传到GitHub仓库。
 
 ## 手动部署步骤
 
@@ -37,6 +35,11 @@ chmod +x /usr/local/bin/docker-compose
 
 2. 克隆或下载此仓库到服务器
 
+```bash
+git clone https://github.com/yulonh/v2ray-proxy.git
+cd v2ray-proxy
+```
+
 3. 配置防火墙 (可选但推荐):
 
 ```bash
@@ -47,7 +50,6 @@ chmod +x firewall.sh
 4. 运行安装脚本:
 
 ```bash
-cd v2ray-proxy
 chmod +x setup.sh
 ./setup.sh
 ```
@@ -77,6 +79,17 @@ docker-compose up -d
 - V2rayU (Mac)
 - v2rayNG (Android)
 - Shadowrocket (iOS)
+
+## 阿里云部署推荐配置
+
+在阿里云服务器上部署时，我们推荐以下配置：
+
+1. **实例规格**：2核4GB内存
+2. **操作系统**：Ubuntu 20.04/22.04 或 Debian 11/12
+3. **带宽**：10Mbps及以上
+4. **地区**：香港/新加坡/日本/美国西海岸
+5. **网络**：选择带公网IP的实例，按流量计费
+6. **安全**：开放443端口和SSH端口
 
 ## 安全建议
 
