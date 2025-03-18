@@ -1,0 +1,99 @@
+port: 7890
+socks-port: 7891
+allow-lan: true
+mode: Rule
+log-level: info
+external-controller: 127.0.0.1:9090
+dns:
+  enable: true
+  listen: 0.0.0.0:53
+  enhanced-mode: fake-ip
+  nameserver:
+    - 114.114.114.114
+    - 223.5.5.5
+    - 8.8.8.8
+    - 1.1.1.1
+
+proxies:
+  - name: V2ray-Yulonh
+    type: vless
+    server: v2ray.yulonh.com
+    port: 443
+    uuid: 70dc8266-8372-47f6-80bc-6535ad545722
+    network: tcp
+    tls: true
+    flow: xtls-rprx-vision
+    udp: true
+    skip-cert-verify: false
+
+proxy-groups:
+  - name: 🚀 节点选择
+    type: select
+    proxies:
+      - V2ray-Yulonh
+      - DIRECT
+
+  - name: 🌍 国外媒体
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+
+  - name: 📲 电报信息
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+
+  - name: 💻 国外网站
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+
+  - name: 🎯 全球直连
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀 节点选择
+
+  - name: 🛑 全球拦截
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+
+  - name: 🍎 苹果服务
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+
+  - name: 🐟 漏网之鱼
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+
+rules:
+  - DOMAIN-SUFFIX,google.com,🚀 节点选择
+  - DOMAIN-KEYWORD,google,🚀 节点选择
+  - DOMAIN-SUFFIX,ad.com,🛑 全球拦截
+  - DOMAIN-SUFFIX,ads.com,🛑 全球拦截
+  - DOMAIN-SUFFIX,ad-delivery.net,🛑 全球拦截
+  - DOMAIN-SUFFIX,youtube.com,🌍 国外媒体
+  - DOMAIN-SUFFIX,youtu.be,🌍 国外媒体
+  - DOMAIN-SUFFIX,netflix.com,🌍 国外媒体
+  - DOMAIN-SUFFIX,netflixdnstest.com,🌍 国外媒体
+  - DOMAIN-SUFFIX,nflxvideo.net,🌍 国外媒体
+  - DOMAIN-SUFFIX,telegram.org,📲 电报信息
+  - DOMAIN-SUFFIX,t.me,📲 电报信息
+  - DOMAIN-SUFFIX,tdesktop.com,📲 电报信息
+  - DOMAIN-SUFFIX,telegram.me,📲 电报信息
+  - DOMAIN-SUFFIX,telesco.pe,📲 电报信息
+  - DOMAIN-SUFFIX,apple.com,🍎 苹果服务
+  - DOMAIN-SUFFIX,icloud.com,🍎 苹果服务
+  - DOMAIN-SUFFIX,apple-cloudkit.com,🍎 苹果服务
+  - DOMAIN-SUFFIX,cn,🎯 全球直连
+  - GEOIP,CN,🎯 全球直连
+  - MATCH,🐟 漏网之鱼 
